@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>人格深潜 · 荣格八维人格测评</title>
+<meta name="description" content="48 道情境题，8 项认知功能，12 个亚维度，16 型深度档案。基于荣格类型学的深度人格测评。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<nav class="nav">
+  <div class="brand"><span class="dot"></span><b>人格深潜</b><span>DEPTH</span></div>
+  <div class="navlinks">
+    <a href="#home" data-nav="home">首页</a>
+    <a href="#test" data-nav="test">开始测评</a>
+    <a href="#lib" data-nav="lib">16 型档案</a>
+    <a href="#home" id="navMethod">方法论</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ 首页 ============ -->
+<section id="view-home" class="view wrap">
+  <div class="hero">
+    <div>
+      <div class="kicker">Jungian Depth Assessment</div>
+      <h1 class="hero-title">人格<em>深潜</em></h1>
+      <p class="hero-sub">
+        不是四个字母的游戏。我们用 <strong>48 道情境题</strong>，测绘你的
+        <strong>8 项认知功能</strong>、<strong>12 个亚维度</strong>，
+        再把你归入 16 型人格中唯一的那一个——附一份你可能从没被这样描述过的深度档案。
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="startBtn">开始深潜 →</button>
+        <a class="btn btn-ghost" href="#lib">先看 16 型档案</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>48<span>题</span></b>情境化题目</div>
+        <div><b>8<span>项</span></b>认知功能</div>
+        <div><b>12<span>个</span></b>亚维度</div>
+        <div><b>16<span>型</span></b>深度档案</div>
+      </div>
+    </div>
+    <div class="orbit" id="orbit">
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-core"><div><span>16</span><small>PERSONALITY</small></div></div>
+      <div class="orbit-spin" id="orbitSpin"></div>
+    </div>
+  </div>
+
+  <div class="section" id="method" style="padding-bottom:60px">
+    <div class="goldline"></div>
+    <div class="grid g3">
+      <div class="card">
+        <div class="card-title"><h3>荣格八维，不是四个字母</h3></div>
+        <p class="prose" style="font-size:13px">
+          大多数测试只告诉你「你是 I 还是 E」。我们追踪的是八种认知功能——
+          Ni、Ne、Si、Se、Ti、Te、Fi、Fe——以及它们在你身上排成的顺序。
+          决定你行为的不是偏好，是这套顺序。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title"><h3>12 个亚维度，拒绝脸谱化</h3></div>
+        <p class="prose" style="font-size:13px">
+          同是 INFP，有人在社交里耗竭，有人在想象里耗竭。
+          我们把每个维度拆成 3 个亚维度单独计分，
+          让你看见自己在哪一格偏离了「标准答案」。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title"><h3>也告诉你，你的阴影在哪</h3></div>
+        <p class="prose" style="font-size:13px">
+          每种人格都有一套压力下的失控模式。我们不会只夸你的天赋，
+          也会指出你在最低谷时会变成什么样——那通常才是你最需要被理解的部分。
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>人格深潜 · PERSONALITY DEPTH</span>
+    <span>本测评用于自我探索，不构成心理诊断</span>
+  </div>
+</section>
+
+<!-- ============ 测试页 ============ -->
+<section id="view-test" class="view wrap hidden">
+  <div class="test-shell">
+    <div class="test-head">
+      <div class="qid"><b id="qnum">01</b><span style="opacity:.5">/ 48</span></div>
+      <div class="phase" id="phaseName">能量指向</div>
+    </div>
+    <div class="bar"><i id="progbar"></i></div>
+    <div class="qcard">
+      <div class="qdim" id="qdim">DIMENSION 01</div>
+      <div class="qtext" id="qtext"></div>
+      <div class="scale" id="scale"></div>
+    </div>
+    <div class="test-foot">
+      <button class="linkbtn" id="btnPrev">← 上一题</button>
+      <div class="kb">键盘 <kbd>1</kbd>–<kbd>5</kbd> 作答 · <kbd>←</kbd> 返回</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 计算中 ============ -->
+<section id="view-calc" class="view hidden">
+  <div class="calc" style="min-height:calc(100vh - 65px)">
+    <div>
+      <div class="ring"></div>
+      <h2>正在解析你的认知结构</h2>
+      <p>CALIBRATING COGNITIVE FUNCTIONS</p>
+      <div id="calcstep">初始化维度权重…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 结果页 ============ -->
+<section id="view-result" class="view wrap hidden">
+  <div id="resultBody"></div>
+</section>
+
+<!-- ============ 资料库 ============ -->
+<section id="view-lib" class="view wrap hidden">
+  <div class="lib-head">
+    <div class="kicker">The Sixteen Types</div>
+    <h1>16 型人格档案</h1>
+    <p>四种气质群，十六种活法。每一型都有一份完整的认知功能栈、天赋与盲点、压力下的阴影反应，以及一段关于你的长文。</p>
+  </div>
+  <div class="groups" id="libGroups"></div>
+  <div class="footer">
+    <span>人格深潜 · PERSONALITY DEPTH</span>
+    <span>档案内容为类型学描述，个体差异永远大于类型差异</span>
+  </div>
+</section>
+
+<!-- ============ 单型详情 ============ -->
+<section id="view-detail" class="view wrap hidden">
+  <div id="detailBody"></div>
+</section>
+
+</main>
+
+<!-- ============ 分享卡 ============ -->
+<div class="canvas-wrap hidden" id="canvasModal">
+  <div>
+    <canvas id="shareCanvas" width="1080" height="1440"></canvas>
+    <div class="canvas-bar">
+      <button class="btn btn-ghost" id="btnCloseCanvas">关闭</button>
+      <button class="btn btn-primary" id="btnDownload" style="padding:11px 26px;font-size:13px">保存图片</button>
+    </div>
+  </div>
+</div>
+
+<script src="types.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
